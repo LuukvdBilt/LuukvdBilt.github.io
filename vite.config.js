@@ -3,7 +3,8 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/', // root van de main branch
+  base: '/', // root van de branch
 })
+
 
 
