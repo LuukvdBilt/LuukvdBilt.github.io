@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/', // root van de branch
+  base: '/LuukPokemonFE.github.io/'
 })
 
 
