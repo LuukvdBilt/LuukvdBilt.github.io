@@ -1,0 +1,136 @@
+/* Centreert de titel, stelt het lettertype en de grootte in en voegt ondermarge toe */
+.pokemon-title {
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Stijlt de tekst die aangeeft dat er geladen wordt; centreert en maakt het vetter en iets groter */
+.loading-text {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Grid-container voor Pokémon-kaarten; maakt responsieve kolommen met ruimte ertussen en centreert de lijst */
+.pokemon-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Individuele kaartstijl:
+   - flex-kolom layout
+   - rand en afgeronde hoeken
+   - achtergrondkleur en cursor
+   - overgang voor hover-effecten
+   - minimale hoogte, padding en overflow-instelling */
+.pokemon-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: 0.2s;
+  min-height: 160px;
+  padding: 5px;
+  overflow: visible;
+}
+
+/* Hover-effect voor kaarten: verander de randkleur en voeg een schaduw toe voor focus/hover feedback */
+.pokemon-card:hover {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+/* Container voor de sprite:
+   - neemt beschikbare ruimte in de kaart
+   - centreert de sprite horizontaal en verticaal */
+.sprite-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* Sprite-afbeelding:
+   - vaste afmetingen voor consistente layout
+   - 'pixelated' rendering voor pixel-art
+   - object-fit behoudt aspect ratio zonder vervorming */
+.pokemon-sprite {
+  width: 72px;
+  height: 72px;
+  image-rendering: pixelated;
+  object-fit: contain;
+}
+
+/* Container voor de naam:
+   - volledige breedte van de kaart en gecentreerde tekst
+   - kleine bovenmarge voor afstand tot de sprite */
+.name-container {
+  width: 100%;
+  text-align: center;
+  margin-top: 5px;
+}
+
+/* Naam van de Pokémon:
+   - vetgedrukt, kleinere lettergrootte en capitalize
+   - zwarte kleur en afbreken van lange woorden indien nodig */
+.pokemon-name {
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: capitalize;
+  color: black;
+  display: block;
+  word-break: break-word;
+}
+
+/* Modal backdrop:
+   - full-screen overlay met semi-transparante achtergrond
+   - centreert de modal en plaatst het boven andere content met hoge z-index */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal zelf:
+   - witte achtergrond, padding en afgeronde hoeken
+   - gecentreerde tekst en beperkte maximale breedte */
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  max-width: 300px;
+}
+
+/* Knoppen binnen de modal:
+   - marge tussen knoppen, padding en cursorwijziging */
+.modal-buttons button {
+  margin: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Specifieke stijl voor de sluitknop:
+   - marge boven, padding en cursorwijziging */
+.close-button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  cursor: pointer;
+}

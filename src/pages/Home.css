@@ -1,0 +1,157 @@
+/* === Popup === */
+/* Overlay achter de popup: donker, full-screen en centreert de kaart */
+/* Dit element bedekt het hele scherm en dimt de achtergrond.
+  Gebruik flex om de kaart in het midden te plaatsen. */
+.popup-overlay {
+  position: fixed; /* blijft op dezelfde plek bij scrollen */
+  top: 0; /* bovenkant van het scherm */
+  left: 0; /* linkerkant van het scherm */
+  width: 100%; /* volledige breedte */
+  height: 100%; /* volledige hoogte */
+  background: rgba(0, 0, 0, 0.6); /* semi-transparant zwart om te dimmen */
+  display: flex; /* maakt centreren mogelijk */
+  justify-content: center; /* horizontaal centreren */
+  align-items: center; /* verticaal centreren */
+  z-index: 999; /* boven andere inhoud tonen */
+}
+
+/* De witte popup-kaart: rondingen, padding en schaduw */
+/* Dit is het zichtbare venster met inhoud (afbeelding, naam, stats). */
+.popup-card {
+  background: white; /* witte achtergrond voor contrast */
+  border-radius: 12px; /* afgeronde hoeken voor zachte uitstraling */
+  padding: 20px; /* ruimte binnen de kaart */
+  width: 320px; /* vaste breedte zodat layout consistent is */
+  text-align: center; /* inhoud gecentreerd uitlijnen */
+  position: relative; /* nodig om de sluitknop absoluut te positioneren */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* subtiele schaduw voor diepte */
+  animation: popupIn 0.25s ease-out; /* korte animatie bij openen */
+}
+
+/* Animatie: inzoomen en vervagen naar zichtbaar */
+/* Maakt de popup vloeiend zichtbaar met schalen en doorgroeien van zichtbaarheid. */
+@keyframes popupIn {
+  from {
+   transform: scale(0.9); /* start iets kleiner */
+   opacity: 0; /* start onzichtbaar */
+  }
+  to {
+   transform: scale(1); /* eindigt op normale grootte */
+   opacity: 1; /* volledig zichtbaar */
+  }
+}
+
+/* Afbeelding in de popup: vaste afmetingen en aspect behouden */
+/* Zorgt dat de Pokémon-afbeelding netjes binnen een vierkant past. */
+.popup-image {
+  width: 150px; /* vaste breedte */
+  height: 150px; /* vaste hoogte */
+  object-fit: contain; /* afbeelding behoudt verhoudingen en wordt geschaald */
+}
+
+/* Naam van de Pokémon: capitaliseren en ruimte erboven */
+/* Toont naam met eerste letter hoofdletter en extra ruimte boven de naam. */
+.popup-name {
+  text-transform: capitalize; /* maakt eerste letter hoofdletter */
+  margin-top: 10px; /* ruimte boven de naam */
+  font-size: 1.5rem; /* grotere tekst voor duidelijkheid */
+}
+
+/* Sluitknop: bovenin rechts in de kaart, transparant uiterlijk */
+/* Kleine knop rechtsboven in de kaart om de popup te sluiten. */
+.close-btn {
+  position: absolute; /* positionering relatief aan .popup-card */
+  top: 10px; /* afstand vanaf de bovenkant van de kaart */
+  right: 12px; /* afstand vanaf de rechterkant van de kaart */
+  background: transparent; /* geen achtergrondkleur, alleen tekst/icoon ziet men */
+  border: none; /* geen rand */
+  font-size: 1.3rem; /* grootte van het kruisje of icoon */
+  cursor: pointer; /* cursor verandert naar pointer bij hover */
+}
+
+/* Container voor statistieken: scheiding en uitlijning van tekst */
+/* Groepeert de stat-regels en zorgt dat alles links uitgelijnd is. */
+.stats {
+  margin-top: 10px; /* ruimte tussen naam/afbeelding en stats */
+  text-align: left; /* stats links uitlijnen voor leesbaarheid */
+}
+
+/* Eén regel van een stat: marge tussen regels */
+/* Houdt afstand tussen individuele statregels. */
+.stat-line {
+  margin: 5px 0; /* verticale ruimte boven en onder elke statregel */
+}
+
+/* Achtergrond van de stat-balk: ziet er als 'rail' uit */
+/* Dit is de lege balk waar de vulling in beweegt. */
+.stat-bar {
+  height: 6px; /* hoogte van de rail */
+  background: #ddd; /* neutrale kleur voor de lege rail */
+  border-radius: 4px; /* afgeronde uiteinden van de rail */
+  overflow: hidden; /* voorkomt dat de vulling buiten de rail zichtbaar is */
+}
+
+/* Vulling van de stat-balk: kleur en volledige hoogte binnen de rail */
+/* Wordt dynamisch geschaald (bijv. via width in HTML/JS) om waarde te tonen. */
+.stat-fill {
+  height: 100%; /* vult de volledige hoogte van de rail */
+  background: #7e4dfb; /* opvallende kleur voor de vulling */
+}
+
+/* Container voor team-kaarten: centreert en wrappen bij smalle schermen */
+/* Houdt team-kaarten samen en zorgt voor nette tussenruimte en wrapping. */
+.team-container {
+  display: flex; /* flexbox voor eenvoudige uitlijning */
+  justify-content: center; /* centreert de kaarten horizontaal */
+  flex-wrap: wrap; /* laat kaarten op nieuwe regels vallen bij gebrek aan ruimte */
+  gap: 15px; /* ruimte tussen individuele team-kaarten */
+  margin-top: 20px; /* afstand boven de team-sectie */
+}
+
+/* Individuele team-kaart: kolomindeling, rand en padding */
+/* Elk team-item is een kleine kaart met inhoud verticaal uitgelijnd. */
+.team-card {
+  display: flex; /* flexbox voor interne layout */
+  flex-direction: column; /* inhoud onder elkaar plaatsen */
+  align-items: center; /* inhoud centreren binnen de kaart */
+  border: 2px solid #ccc; /* grijze rand om kaart zichtbaar te maken */
+  border-radius: 8px; /* afgeronde hoeken */
+  padding: 10px; /* binnenruimte */
+  background: #f9f9f9; /* lichte achtergrondkleur voor contrast */
+  min-width: 120px; /* minimale breedte zodat kaart niet te klein wordt */
+}
+
+/* Hover-effect voor team-kaarten: visuele feedback en pointer */
+/* Verandert kleur en voegt schaduw toe bij hover zodat kaart interactief lijkt. */
+.team-card:hover {
+  border-color: #7e4dfb; /* randkleur verandert naar accentkleur */
+  box-shadow: 0 0 8px rgba(110, 0, 255, 0.4); /* zachte glow voor focus */
+  cursor: pointer; /* pointer geeft aan dat kaart klikbaar is */
+}
+
+/* Lijst met Pokémon: responsief grid met minimale kolombreedte */
+/* Toont veel Pokémon als een grid dat zich aanpast aan schermbreedte. */
+.pokemon-list {
+  display: grid; /* grid layout voor nette rijen/kolommen */
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* automatische kolommen met minimale breedte */
+  gap: 15px; /* ruimte tussen grid-items */
+  max-width: 1000px; /* maximaal breedte van de lijst voor leesbaarheid */
+  margin: 0 auto; /* centreert de lijst horizontaal op de pagina */
+}
+
+/* Verwijderknop (klein rond rood knopje) */
+/* Wordt gebruikt om een Pokémon uit een team te verwijderen. */
+.remove-btn {
+  margin-top: 5px; /* kleine ruimte boven de knop */
+  background: red; /* opvallende rode kleur voor verwijderen */
+  color: white; /* contrasteerde tekstkleur */
+  border: none; /* geen rand */
+  border-radius: 50%; /* rond knopje */
+  width: 20px; /* vaste breedte */
+  height: 20px; /* vaste hoogte */
+  font-size: 0.9rem; /* tekstgrootte binnen knop */
+  cursor: pointer; /* pointer bij hover */
+  display: flex; /* flex voor centreren van tekst/icoon */
+  justify-content: center; /* horizontaal centreren inhoud */
+  align-items: center; /* verticaal centreren inhoud */
+}

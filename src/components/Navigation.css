@@ -1,0 +1,104 @@
+/* Container voor de navigatie met gecentreerde items en ruimte ertussen */
+.nav-container {
+  display: flex;
+  justify-content: center; /* centreert items horizontaal */
+  align-items: center;     /* centreert items verticaal */
+  gap: 50px;               /* ruimte tussen pokéballs */
+  margin: 20px 0;          /* verticale marge */
+}
+
+/* Stijl voor een enkele "pokeball" link/knop */
+.pokeball {
+  position: relative;      /* nodig voor absolute children (::before/::after) */
+  width: 120px;            /* breedte van de pokébal */
+  height: 120px;           /* hoogte van de pokébal */
+  border: 4px solid black; /* rand rondom */
+  border-radius: 50%;      /* rond maken */
+  background: linear-gradient(to bottom, red 50%, white 50%); /* boven rood, onder wit */
+  display: flex;           /* centreert tekst binnen de bol */
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;   /* geen onderstreping voor links */
+  color: black;            /* tekstkleur */
+  font-weight: bold;       /* vetgedrukte tekst */
+  font-size: 16px;         /* tekstgrootte */
+  transition: transform 0.2s ease; /* animatie bij hover */
+  overflow: hidden;        /* voorkomt overflow van pseudo-elementen */
+}
+
+/* Zwarte band midden op de pokébal */
+.pokeball::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;             /* bedekt volledige breedte */
+  height: 4px;             /* dikte van de band */
+  background: black;       /* zwarte kleur */
+  transform: translateY(-50%); /* verticaal centreren */
+  z-index: 1;              /* boven achtergrond, onder tekst */
+}
+
+/* Centrale witte knop op de pokébal */
+.pokeball::after {
+  content: "";
+  position: absolute;
+  width: 40px;             /* diameter van het centrale knopje */
+  height: 40px;
+  background: white;       /* wit knopje */
+  border: 4px solid black; /* rand rond knopje */
+  border-radius: 50%;      /* rond knopje */
+  z-index: 1;              /* boven de band, onder de tekst */
+}
+
+/* Tekst binnen de pokébal moet boven alles blijven */
+.pokeball span {
+  position: relative;
+  z-index: 2; /* tekst bovenop pseudo-elementen */
+}
+
+/* Hover-effect: vergroten en schijnsel */
+.pokeball:hover {
+  transform: scale(1.1);   /* vergroot de pokébal */
+  box-shadow: 0 0 20px 5px rgb(255, 0, 0); /* rood gloei-effect */
+}
+
+/* Actieve pokébal (bijvoorbeeld geselecteerd) krijgt andere kleur */
+.pokeball.active {
+  background: linear-gradient(to bottom, #a00ec5 50%, white 50%); /* paarse bovenkant */
+  color: rgb(0, 0, 0); /* tekstkleur behouden zwart */
+}
+
+/* Tweede definitie van nav-container (overschrijft sommige waarden) */
+/* Houdt marge op 0 en voegt padding + achtergrond toe */
+.nav-container {
+    margin: 0;               /* overschrijft eerdere marge */
+    padding: 2em;           /* binnenruimte rond de container */
+    background: #717171;    /* grijze achtergrondkleur */
+    position: relative;     /* voor ::after positionering */
+}
+
+/* Flex container voor de daadwerkelijke links */
+.nav-links {
+    display: flex;
+    justify-content: center; /* centreert links binnen deze container */
+    gap: 2em;                /* ruimte tussen individuele links */
+}
+
+/* Logo binnen de navigatie, absoluut gepositioneerd links */
+.nav-logo {
+    height: 100px;          /* hoogte van het logo */
+    position: absolute;
+    left: 10px;             /* afstand vanaf de linkerkant */
+}
+
+/* Decoratieve gradient onder de navigatie */
+.nav-container::after {
+  content: "";
+  position: absolute;
+  bottom: -4px; /* net onder de container geplaatst */
+  width: 100%;  /* loopt over de volledige breedte */
+  height: 4px;  /* hoogte van de lijn */
+  background: linear-gradient(to right, rgb(0, 251, 255), rgb(162, 0, 255)); /* kleurverloop */
+  box-shadow: 0px 0px 20px 4px rgba(9, 95, 255, 0.5); /* gloei-effect rond de lijn */
+}
